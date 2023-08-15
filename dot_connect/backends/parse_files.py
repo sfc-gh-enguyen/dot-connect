@@ -1,9 +1,10 @@
-"""Utility module to config file contents as dictionaries"""
+"""Utility module to config file contents as dictionaries."""
 from typing import Dict
 
-def read_json(file : str) -> Dict:
+
+def read_json(file: str) -> Dict:
     """
-    Returns contents of .json file as dict.
+    Return contents of .json file as dict.
 
     Returns:
         file: Absolute or relative path to .json file.
@@ -24,14 +25,15 @@ def read_json(file : str) -> Dict:
     """
     import json
 
-    with open(file, 'r') as f:
+    with open(file, "r") as f:
         connection_parameters = json.load(f)
 
     return connection_parameters
 
-def read_yaml(file : str) -> Dict:
+
+def read_yaml(file: str) -> Dict:
     """
-    Returns contents of .yaml or .yml file as dict.
+    Return contents of .yaml or .yml file as dict.
 
     Returns:
         file: Absolute or relative path to .yaml/.yml file.
@@ -52,14 +54,15 @@ def read_yaml(file : str) -> Dict:
     """
     import yaml
 
-    with open(file, 'r') as f:
-        connection_parameters = yaml.load(f, Loader = yaml.FullLoader)
+    with open(file, "r") as f:
+        connection_parameters = yaml.load(f, Loader=yaml.FullLoader)
 
     return connection_parameters
 
-def read_py(file : str) -> Dict: # NOT STARTED
+
+def read_py(file: str) -> Dict:  # NOT STARTED
     """
-    Returns contents of .py file as dict.
+    Return contents of .py file as dict.
 
     Returns:
         file: Absolute or relative path to .py file.
@@ -79,14 +82,16 @@ def read_py(file : str) -> Dict: # NOT STARTED
         }
     """
     import json
+
     with open(file) as f:
         connection_parameters = json.load(f)
 
     return connection_parameters
 
-def read_ini_conf_cfg(file : str) -> Dict:
+
+def read_ini_conf_cfg(file: str) -> Dict:
     """
-    Returns contents of .ini, .conf, or .cfg file as dict.
+    Return contents of .ini, .conf, or .cfg file as dict.
 
     Returns:
         file: Absolute or relative path to file.
@@ -109,6 +114,4 @@ def read_ini_conf_cfg(file : str) -> Dict:
 
     config = configparser.ConfigParser()
     content = config.read(file)
-    connection_parameters = {s:dict(content.items(s)) for s in content.sections()}
-
-    return connection_parameters
+    return {s: dict(content.items(s)) for s in content.sections()}
